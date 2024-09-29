@@ -1,0 +1,27 @@
+name: authent
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  web3dart: ^2.7.3
+  flutter_secure_storage: ^9.2.2
+  encrypt: ^5.0.3
+  firebase_core: ^3.6.0
+  firebase_storage: ^12.3.2
+  path_provider: ^2.1.4
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

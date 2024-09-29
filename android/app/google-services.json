@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "316807487054",
+    "project_id": "eventi-85fb2",
+    "storage_bucket": "eventi-85fb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316807487054:android:42bddbb5f5c31a6d46ed1f",
+        "android_client_info": {
+          "package_name": "com.example.authent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316807487054-4ejije70lkpfqr8qded8bmq6q9j3di04.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbDt9r60NWHwFYKSMp8sBgOTGDvpJJ62I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316807487054-4ejije70lkpfqr8qded8bmq6q9j3di04.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "316807487054-pit44km8li8pkr1rknbho2cqpdas51vv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eventManagement"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316807487054:android:db2bc87fa1a90f6146ed1f",
+        "android_client_info": {
+          "package_name": "com.example.event_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316807487054-4ejije70lkpfqr8qded8bmq6q9j3di04.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbDt9r60NWHwFYKSMp8sBgOTGDvpJJ62I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316807487054-4ejije70lkpfqr8qded8bmq6q9j3di04.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "316807487054-pit44km8li8pkr1rknbho2cqpdas51vv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eventManagement"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
