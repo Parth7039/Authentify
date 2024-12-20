@@ -204,120 +204,122 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                 ],
               ),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Decentralized Authentication",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    ElevatedButton(
-                      onPressed: generateDID,
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Decentralized Authentication",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
-                      child: Text(
-                        "Generate DID",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () async {
-                        String? storedDID = await storage.read(key: 'user_did');
-                        if (storedDID == null) {
-                          setState(() {
-                            statusMessage = "No DID found. Please generate DID first.";
-                          });
-                          return;
-                        }
-
-                        String userData = "Sensitive user authentication data. DID: $storedDID";
-
-                        encryptionKey = generateEncryptionKey();
-                        String encryptedData = encryptData(userData, encryptionKey!);
-
-                        shards = shardData(encryptedData, 3);
-                        setState(() {
-                          statusMessage = "Data encrypted and sharded into 3 parts.\nEncryption Key: $encryptionKey";
-                        });
-
-                        for (int i = 0; i < shards.length; i++) {
-                          String filePath = await saveShardLocally(shards[i], i);
-                          print("Shard saved locally at: $filePath");
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                      child: Text(
-                        "Encrypt, Shard, and Save Data Locally",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Container(
-                      width: 400,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey[300]!, width: 1),
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
-                            spreadRadius: 5,
-                            blurRadius: 10,
-                            offset: Offset(0, 5),
+                      SizedBox(height: 30),
+                      ElevatedButton(
+                        onPressed: generateDID,
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        ],
-                      ),
-                      child: TextField(
-                        controller: keyController,
-                        decoration: InputDecoration(
-                          labelText: "Enter Encryption Key",
-                          labelStyle: TextStyle(color: Colors.black54, fontSize: 16),
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.all(16),
+                        ),
+                        child: Text(
+                          "Generate DID",
+                          style: TextStyle(fontSize: 18),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 30),
-                    ElevatedButton(
-                      onPressed: authenticateUser,
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () async {
+                          String? storedDID = await storage.read(key: 'user_did');
+                          if (storedDID == null) {
+                            setState(() {
+                              statusMessage = "No DID found. Please generate DID first.";
+                            });
+                            return;
+                          }
+
+                          String userData = "Sensitive user authentication data. DID: $storedDID";
+
+                          encryptionKey = generateEncryptionKey();
+                          String encryptedData = encryptData(userData, encryptionKey!);
+
+                          shards = shardData(encryptedData, 3);
+                          setState(() {
+                            statusMessage = "Data encrypted and sharded into 3 parts.\nEncryption Key: $encryptionKey";
+                          });
+
+                          for (int i = 0; i < shards.length; i++) {
+                            String filePath = await saveShardLocally(shards[i], i);
+                            print("Shard saved locally at: $filePath");
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        child: Text(
+                          "Encrypt, Shard, and Save Data Locally",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      Container(
+                        width: 400,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey[300]!, width: 1),
                           borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              spreadRadius: 5,
+                              blurRadius: 10,
+                              offset: Offset(0, 5),
+                            ),
+                          ],
+                        ),
+                        child: TextField(
+                          controller: keyController,
+                          decoration: InputDecoration(
+                            labelText: "Enter Encryption Key",
+                            labelStyle: TextStyle(color: Colors.black54, fontSize: 16),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(16),
+                          ),
                         ),
                       ),
-                      child: Text(
-                        "Authenticate User",
-                        style: TextStyle(fontSize: 18),
+                      SizedBox(height: 30),
+                      ElevatedButton(
+                        onPressed: authenticateUser,
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        child: Text(
+                          "Authenticate User",
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      statusMessage,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: statusMessage.contains('Error') ? Colors.red : Colors.black87,
+                      SizedBox(height: 30),
+                      Text(
+                        statusMessage,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: statusMessage.contains('Error') ? Colors.red : Colors.black87,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -333,27 +335,29 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   ),
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Authentify',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 36,
-                        color: Colors.white,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Authentify',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 50),
-                    Text(
-                      'A Robust and Secure Decentralized Authentication System for the Next Generation of Digital Identity Verification',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.fredoka(
-                        fontSize: 22,
-                        color: Colors.white,
+                      SizedBox(height: 50),
+                      Text(
+                        'A Robust and Secure Decentralized Authentication System for the Next Generation of Digital Identity Verification',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.fredoka(
+                          fontSize: 22,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
